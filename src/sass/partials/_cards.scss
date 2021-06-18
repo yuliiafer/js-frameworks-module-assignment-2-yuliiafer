@@ -1,0 +1,111 @@
+.page-content {
+    max-width: 80%;
+    margin: 0 auto;
+
+    .card {
+        align-items: flex-start;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .1),
+            0 2px 2px rgba(0, 0, 0, .1),
+            0 4px 4px rgba(0, 0, 0, .1),
+            0 8px 8px rgba(0, 0, 0, .1),
+            0 16px 16px rgba(0, 0, 0, .1);
+
+        &:hover {
+            align-items: center;
+
+            &::before {
+                transform: translateY(-4%);
+            }
+
+            &::after {
+                transform: translateY(-50%);
+            }
+
+            .content {
+                transform: translateY(0);
+
+                *:not(.title) {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 85ms;
+                }
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1050ms cubic-bezier(0.19, 1, 0.22, 1);
+            pointer-events: none;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            pointer-events: none;
+            background-image: linear-gradient(to bottom, rgba(48, 45, 252, 0) 0%,
+                    rgba(48, 45, 252, 0.09) 11.7%,
+                    rgba(48, 45, 252, 0.034) 22.1%,
+                    rgba(48, 45, 252, 0.072) 31.2%,
+                    rgba(48, 45, 252, 0.123) 39.4%,
+                    rgba(48, 45, 252, 0.182) 46.6%,
+                    rgba(48, 45, 252, 0.249) 53.1%,
+                    rgba(48, 45, 252, 0.32) 58.9%,
+                    rgba(48, 45, 252, 0.394) 64.3%,
+                    rgba(48, 45, 252, 0.468) 69.3%,
+                    rgba(48, 45, 252, 0.54) 74.1%,
+                    rgba(48, 45, 252, 0.607) 78.8%,
+                    rgba(48, 45, 252, 0.668) 83.6%,
+                    rgba(48, 45, 252, 0.721) 88.7%,
+                    rgba(48, 45, 252, 0.762) 94.1%,
+                    rgba(48, 45, 252, 0.79)100%);
+            transform: translateY(-50%);
+            transition: transform 1400ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .content {
+            transition: transform 700ms cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 1;
+            transform: translateY(calc(100% - 4.5rem));
+
+            *:not(.title) {
+                opacity: 0;
+                transform: translateY(1rem);
+                transition: transform 700ms cubic-bezier(0.19, 1, 0.22, 1),
+                    opacity 700ms cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+
+        &::after {
+            transform: translateY(1rem);
+        }
+    }
+
+    @media (min-width: 600px) {
+        .page-content {
+            grid-template-columns: repeat(2, 1fr);
+
+            .card {
+                height: 350px;
+            }
+        }
+    }
+
+    @media (min-width: 800px) {
+        .page-content {
+            grid-template-columns: repeat(4, 1fr);
+            width: 90%;
+        }
+    }
+}
